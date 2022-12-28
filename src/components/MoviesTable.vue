@@ -22,7 +22,7 @@
                         <td>
                             <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
                             <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
-                            <span @click="alerter" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
+                            <span @click="deleter(movie.id)" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
                         </td>
                     </tr>
                 </tbody>
@@ -84,6 +84,15 @@
             },
             alerter() {
                 alert("testing");
+            },
+            async deleter(n) {
+                let url = `api/MotionPictures/${n}`;
+                let fetchOptions = {
+                    method: 'DELETE'
+                }
+                let res = await fetch(url,fetchOptions);
+
+                this.fetchData();
             }
         },
     });

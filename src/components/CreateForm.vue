@@ -8,7 +8,7 @@
         </div>
         <div>
             <label for="description">Description</label>
-            <textarea name="description" v-model.trim="description" placeholder="Description" maxlength="500"></textarea>
+            <textarea name="description" id="description" v-model.trim="description" placeholder="Description" maxlength="500"></textarea>
             <div class="description-feedback">{{ 500 - description.length }} characters remaining.</div>
         </div>
         <div>

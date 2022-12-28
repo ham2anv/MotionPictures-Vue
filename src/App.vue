@@ -3,7 +3,7 @@
     <div v-if="adding">
         <create-form @create="toggle('adding')" />
     </div>
-    <div v-if="listing">
+    <div v-else>
         <div class="full-right"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
         <movies-table />
     </div>
@@ -23,13 +23,11 @@ export default {
         return {
             loading: false,
             adding: false,
-            listing: true
         };
     },
     methods: {
         toggle(state) {
             this[state] = !this[state];
-            this.listing = !this.listing;
         }
     }
 }
@@ -51,6 +49,7 @@ export default {
     padding-block: 4px 5px;
     border-radius: 5px;
     border-color: transparent;
+    cursor: pointer;
 }
 
 .full-right {
