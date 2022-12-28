@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MotionPictures_API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MotionPictures_APIContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MotionPictures_APIContext") ?? throw new InvalidOperationException("Connection string 'MotionPictures_APIContext' not found.")));

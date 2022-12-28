@@ -1,16 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Movies msg="Welcome to Your Vue.js App"/>
+    <h1 style="text-align: center">Motion Picture Data Management Application</h1>
+    <div v-if="adding">
+        <create-form @create="adding = null" />
+    </div>
+    <div v-if="!adding">
+        <div style="display: flex; justify-content:end"><button class="btn" @click="adding = true"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
+        <movies-table />
+    </div>
 </template>
 
 <script>
-import Movies from './components/Movies.vue'
+    import MoviesTable from './components/MoviesTable.vue'
+    import CreateForm from './components/CreateForm.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Movies
-  }
+        name: 'App',
+        components: {
+            MoviesTable,
+            CreateForm
+        },
+        data() {
+            return {
+                loading: false,
+                adding: null
+            };
+        },
 }
 </script>
 
@@ -19,8 +33,16 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
+    .btn {
+        background-color: #088cff;
+        color: white;
+        font-weight: bold;
+        padding-inline: 6px;
+        padding-block: 4px 5px;
+        border-radius: 5px;
+        border-color: transparent;
+    }
 </style>

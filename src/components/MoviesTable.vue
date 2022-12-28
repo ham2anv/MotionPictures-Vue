@@ -16,16 +16,40 @@
                 </thead>
                 <tbody>
                     <tr v-for="movie in post" :key="movie.id">
-                        <td>{{ movie.name }}</td>
+                        <td style="text-align: center">{{ movie.name }}</td>
                         <td>{{ movie.description }}</td>
-                        <td>{{ movie.year }}</td>
-                        <td></td>
+                        <td style="text-align: center">{{ movie.year }}</td>
+                        <td>
+                            <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
+                            <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
+                            <span @click="alerter" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </template>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-block: 2px solid black;
+        margin-block-start: 1em;
+    }
+
+    th {
+        border-block-end: 2px solid #888;
+        padding-block: 0.5em;
+    }
+
+    td {
+        border-block-end: 1px solid #eee;
+        padding-block: 0.5em;
+    }
+
+</style>
 
 <script lang="js">
     import { defineComponent } from 'vue';
@@ -58,6 +82,9 @@
                         this.loading = false;
                         return;
                     });
+            },
+            alerter() {
+                alert("testing");
             }
         },
     });
