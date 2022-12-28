@@ -24,7 +24,6 @@
             <div>
                 <button class="btn"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
                 <button class="btn cancel" type="button" @click="canceler"><font-awesome-icon icon="fa-solid fa-xmark" /> Cancel</button>
-                <button class="btn cancel" type="button" @click="deleter"><font-awesome-icon icon="fa-regular fa-trash-can" /> Delete</button>
             </div>
         </form>
     </dialog>
@@ -118,29 +117,15 @@
                 let res = await fetch(url, fetchOptions);
                 const $toast = useToast();
                 if (res.ok) {
-                    const deleteSuccess = $toast.success("Entry edited successfully.", { position: 'top-right' });
+                    const deleteSuccess = $toast.success("Entry duplicated successfully.", { position: 'top-right' });
                 } else {
-                    const deleteFail = $toast.error("Entry was not edited.", { position: 'top-right' });
-                }
-                this.$emit('copy');
-            },
-            async deleter() {
-                let url = `api/MotionPictures/${this.id}`;
-                let fetchOptions = {
-                    method: 'DELETE'
-                }
-                let res = await fetch(url, fetchOptions);
-                const $toast = useToast();
-                if (res.ok) {
-                    const deleteSuccess = $toast.success("Entry created successfully.", { position: 'top-right' });
-                } else {
-                    const deleteFail = $toast.error("Entry was not created.", { position: 'top-right' });
+                    const deleteFail = $toast.error("Entry was not duplicated.", { position: 'top-right' });
                 }
                 this.$emit('copy');
             },
             canceler() {
                 const $toast = useToast();
-                const cancelToast = $toast.info("Editing canceled.", { position: 'top-right' })
+                const cancelToast = $toast.info("Duplicating canceled.", { position: 'top-right' })
                 this.$emit('copy');
             }
         }

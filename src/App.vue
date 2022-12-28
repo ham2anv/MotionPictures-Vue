@@ -1,7 +1,7 @@
 <template>
     <h1 style="text-align: center">Motion Picture Data Management Application</h1>
     <div v-if="adding">
-        <create-form @create="toggle('adding')" />
+        <create-form @create="createComplete" />
     </div>
     <div v-else-if="editing">
         <edit-form :id="editPost.id" :name="editPost.name" :description="editPost.description" :year="editPost.year" @edit="editComplete" />
@@ -59,6 +59,10 @@ export default {
         copyComplete() {
             this.editPost = null;
             this.toggle('copying');
+            this.updateTime = Date.now();
+        },
+        createComplete() {
+            this.toggle('adding');
             this.updateTime = Date.now();
         }
     }

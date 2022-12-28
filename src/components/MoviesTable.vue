@@ -21,9 +21,9 @@
                         <td style="text-align: center">{{ movie.year }}</td>
                         <td>
                             <div class="btn-list">
-                                <span @click="edit(movie)" class="icon-btn"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
-                                <span @click="copier(movie)" class="icon-btn"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
-                                <span @click="deleter(movie.id)" class="icon-btn" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
+                                <span @click="edit(movie)" class="icon-btn" title="Edit"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
+                                <span @click="copier(movie)" class="icon-btn" title="Duplicate"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
+                                <span @click="deleter(movie.id)" class="icon-btn" style="color: red" title="Delete"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
                             </div>
                         </td>
                     </tr>
