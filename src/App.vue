@@ -4,11 +4,14 @@
         <create-form @create="toggle('adding')" />
     </div>
     <div v-else-if="editing">
-        <edit-form :id="editPost.id" :name="editPost.name" :description="editPost.description" :year="editPost.year" @edit="toggle('editing')" />
+        <edit-form :id="editPost.id" :name="editPost.name" :description="editPost.description" :year="editPost.year" @edit="editComplete" />
     </div>
-    <div v-else>
+    <div v-else-if="copying">
+        <copy-form :id="editPost.id" :name="editPost.name" :description="editPost.description" :year="editPost.year" @copy="copyComplete" />
+    </div>
+    <div>
         <div class="full-right"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
-        <movies-table @edit="(n) => edit(n)" />
+        <movies-table @edit="(n) => edit(n)" @copy="(n) => copy(n)" :updateTime="updateTime" />
     </div>
 </template>
 
@@ -16,20 +19,24 @@
 import MoviesTable from './components/MoviesTable.vue'
 import CreateForm from './components/CreateForm.vue'
 import EditForm from './components/EditForm.vue'
+import CopyForm from './components/CopyForm.vue'
 
 export default {
     name: 'App',
     components: {
         MoviesTable,
         CreateForm,
-        EditForm
+        EditForm,
+        CopyForm
     },
     data() {
         return {
             loading: false,
             adding: false,
             editing: false,
-            editPost: null
+            editPost: null,
+            copying: false,
+            updateTime: null
         };
     },
     methods: {
@@ -39,6 +46,20 @@ export default {
         edit(movie) {
             this.editPost = movie;
             this.toggle('editing');
+        },
+        copy(movie) {
+            this.editPost = movie;
+            this.toggle('copying');
+        },
+        editComplete() {
+            this.editPost = null;
+            this.toggle('editing');
+            this.updateTime = Date.now();
+        },
+        copyComplete() {
+            this.editPost = null;
+            this.toggle('copying');
+            this.updateTime = Date.now();
         }
     }
 }

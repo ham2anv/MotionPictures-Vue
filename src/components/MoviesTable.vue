@@ -62,12 +62,17 @@
 <script lang="js">
     import { defineComponent } from 'vue';
 
+    import { useToast } from 'vue-toast-notification';
+    import 'vue-toast-notification/dist/theme-default.css';
+
+
     export default defineComponent({
+        props: ['updateTime'],
         data() {
             return {
                 loading: false,
                 post: null,
-                editing: false
+                editing: false,
             };
         },
         created() {
@@ -76,8 +81,7 @@
             this.fetchData();
         },
         watch: {
-            // call again the method if the route changes
-            '$route': 'fetchData'
+            updateTime: 'fetchData'
         },
         methods: {
             fetchData() {
@@ -101,27 +105,16 @@
                     method: 'DELETE'
                 }
                 let res = await fetch(url,fetchOptions);
-
+                const $toast = useToast();
+                if (res.ok) {
+                    const deleteSuccess = $toast.success("Entry deleted successfully.", { position: 'top-right' });
+                } else {
+                    const deleteFail = $toast.error("Entry was not deleted.", { position: 'top-right' });
+                }
                 this.fetchData();
             },
-            async copier(movie) {
-                let url = 'api/MotionPictures';
-                let movieData = {
-                    name: movie.name,
-                    description: movie.description,
-                    year: movie.year
-                }
-                let fetchOptions = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                    body: JSON.stringify(movieData)
-                }
-                let res = await fetch(url,fetchOptions);
-
-                this.fetchData();
+            copier(movie) {
+                this.$emit('copy',movie);
             }
         },
     });
