@@ -21,7 +21,7 @@
                         <td style="text-align: center">{{ movie.year }}</td>
                         <td>
                             <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
-                            <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
+                            <span @click="copier(movie)" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
                             <span @click="deleter(movie.id)" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
                         </td>
                     </tr>
@@ -89,6 +89,25 @@
                 let url = `api/MotionPictures/${n}`;
                 let fetchOptions = {
                     method: 'DELETE'
+                }
+                let res = await fetch(url,fetchOptions);
+
+                this.fetchData();
+            },
+            async copier(movie) {
+                let url = 'api/MotionPictures';
+                let movieData = {
+                    name: movie.name,
+                    description: movie.description,
+                    year: movie.year
+                }
+                let fetchOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify(movieData)
                 }
                 let res = await fetch(url,fetchOptions);
 
