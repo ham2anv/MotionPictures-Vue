@@ -3,16 +3,18 @@
         <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" placeholder="Name" v-model.trim="name" required maxlength="50" />
-            <div>This field is required. Maximum length: 50 characters.</div>
+            <div>{{ 50 - name.length }} characters remaining.</div>
+            <div class="error">This field is required.</div>
         </div>
         <div>
             <label for="description">Description</label>
             <textarea name="description" v-model.trim="description" placeholder="Description" maxlength="500"></textarea>
+            <div class="description-feedback">{{ 500 - description.length }} characters remaining.</div>
         </div>
         <div>
-            <label for="year">Release Year</label>
+            <label for="year">Release Year (YYYY)</label>
             <input type="text" name="year" id="year" placeholder="Release Year" v-model.number="year" required pattern="\d{4,4}" />
-            <div>This field is required. Must be exactly 4 digits.</div>
+            <div class="error">This field is required.</div>
         </div>
         <div>
             <button class="btn">Save</button>
@@ -37,18 +39,26 @@
         margin-inline-start: 0.5em;
     }
 
-    input:not(:valid), textarea:not(:valid) {
+    .description-feedback {
+        margin-block-end: 2em;
+    }
+
+    input ~ div, textarea ~ div {
+        margin-block: 0.5em;
+        font-size: 0.8rem;
+    }
+
+    input:invalid, textarea:invalid {
         outline: 1px solid red;
     }
 
-    :valid + div {
+    input ~ .error {
         opacity: 0;
     }
 
-    :where(input:not(:valid), textarea:not(:valid)) + div {
+    input:invalid ~ .error {
+        opacity: 1;
         color: red;
-        margin-block: 0.5em;
-        font-size: 0.8rem;
     }
 </style>
 
