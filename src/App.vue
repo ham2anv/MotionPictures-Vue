@@ -3,31 +3,42 @@
     <div v-if="adding">
         <create-form @create="toggle('adding')" />
     </div>
+    <div v-else-if="editing">
+        <edit-form :id="editPost.id" :name="editPost.name" :description="editPost.description" :year="editPost.year" @edit="toggle('editing')" />
+    </div>
     <div v-else>
         <div class="full-right"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
-        <movies-table />
+        <movies-table @edit="(n) => edit(n)" />
     </div>
 </template>
 
 <script>
 import MoviesTable from './components/MoviesTable.vue'
 import CreateForm from './components/CreateForm.vue'
+import EditForm from './components/EditForm.vue'
 
 export default {
     name: 'App',
     components: {
         MoviesTable,
-        CreateForm
+        CreateForm,
+        EditForm
     },
     data() {
         return {
             loading: false,
             adding: false,
+            editing: false,
+            editPost: null
         };
     },
     methods: {
         toggle(state) {
             this[state] = !this[state];
+        },
+        edit(movie) {
+            this.editPost = movie;
+            this.toggle('editing');
         }
     }
 }

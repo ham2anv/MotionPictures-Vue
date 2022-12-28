@@ -4,7 +4,7 @@
             Loading...
         </div>
 
-        <div v-if="post" class="content">
+        <div v-if="post && !editing" class="content">
             <table>
                 <thead>
                     <tr>
@@ -20,7 +20,7 @@
                         <td>{{ movie.description }}</td>
                         <td style="text-align: center">{{ movie.year }}</td>
                         <td>
-                            <span @click="alerter" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
+                            <span @click="edit(movie)" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
                             <span @click="copier(movie)" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
                             <span @click="deleter(movie.id)" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
                         </td>
@@ -57,7 +57,8 @@
         data() {
             return {
                 loading: false,
-                post: null
+                post: null,
+                editing: false
             };
         },
         created() {
@@ -82,8 +83,8 @@
                         return;
                     });
             },
-            alerter() {
-                alert("testing");
+            edit(movie) {
+                this.$emit('edit',movie);
             },
             async deleter(n) {
                 let url = `api/MotionPictures/${n}`;
