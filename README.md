@@ -1,24 +1,15 @@
 # motionpictures-vue
+A single-page application to serve motion picture listings.
+
+Created by Paul Stefko, 2022.
 
 ## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Install node modules using `npm install`.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Create database table using `create_table.sql`.
 
-### Lints and fixes files
-```
-npm run lint
-```
+Update `ConnectionStrings.MotionPictures_APIContext` in 
+`/MotionPictures-API/appsettings.json` with your database's connection string.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Open the `MotionPictures-Vue` solution in Visual Studio. Start with `F5`.
