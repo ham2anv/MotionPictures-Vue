@@ -20,9 +20,11 @@
                         <td>{{ movie.description }}</td>
                         <td style="text-align: center">{{ movie.year }}</td>
                         <td>
-                            <span @click="edit(movie)" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
-                            <span @click="copier(movie)" style="padding-inline:4px"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
-                            <span @click="deleter(movie.id)" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
+                            <div class="btn-list">
+                                <span @click="edit(movie)" class="icon-btn"><font-awesome-icon icon="fa-regular fa-pen-to-square" /> </span>
+                                <span @click="copier(movie)" class="icon-btn"><font-awesome-icon icon="fa-regular fa-copy" /> </span>
+                                <span @click="deleter(movie.id)" class="icon-btn" style="color: red"><font-awesome-icon icon="fa-regular fa-trash-can" /></span>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -48,6 +50,13 @@
         padding-block: 0.5em;
     }
 
+    .btn-list {
+        display: flex;
+    }
+    .icon-btn {
+        padding-inline: 4px;
+        cursor: pointer;
+    }
 </style>
 
 <script lang="js">

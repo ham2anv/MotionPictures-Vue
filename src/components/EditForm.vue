@@ -17,9 +17,9 @@
             <div class="error">This field is required.</div>
         </div>
         <div>
-            <button class="btn">Save</button>
-            <button class="btn cancel" type="button" @click="$emit('edit')">Cancel</button>
-            <button class="btn cancel" type="button" @click="deleter">Delete</button>
+            <button class="btn"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+            <button class="btn cancel" type="button" @click="$emit('edit')"><font-awesome-icon icon="fa-solid fa-xmark" /> Cancel</button>
+            <button class="btn cancel" type="button" @click="deleter"><font-awesome-icon icon="fa-regular fa-trash-can" /> Delete</button>
         </div>
     </form>
 </template>

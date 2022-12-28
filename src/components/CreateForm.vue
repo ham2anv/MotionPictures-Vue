@@ -17,8 +17,8 @@
             <div class="error">This field is required.</div>
         </div>
         <div>
-            <button class="btn">Save</button>
-            <button class="btn cancel" type="button" @click="$emit('create')">Cancel</button>
+            <button class="btn"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+            <button class="btn cancel" type="button" @click="$emit('create')"><font-awesome-icon icon="fa-solid fa-xmark" /> Cancel</button>
         </div>
     </form>
 </template>
