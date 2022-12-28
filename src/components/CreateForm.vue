@@ -1,11 +1,39 @@
 <template>
     <form method="post" action="api/MotionPictures" @submit="postForm">
-        <div>Name: <input type="text" name="name" placeholder="Name" v-model.trim="name" /></div>
-        <textarea name="description" v-model.trim="description">Description</textarea>
-        <div>Release Year: <input type="text" name="year" placeholder="Release Year" v-model.number="year" /></div>
-        <div><button class="btn">Create</button></div>
+        <div>
+            <label for="name">Name label: </label>
+            <input type="text" name="name" id="name" placeholder="Name" v-model.trim="name" required />
+        </div>
+        <div>
+            <label for="description">Description: </label>
+            <textarea name="description" v-model.trim="description" placeholder="Description"></textarea>
+        </div>
+        <div>
+            <label for="year">Release Year: </label>
+            <input type="text" name="year" id="year" placeholder="Release Year" v-model.number="year" required />
+        </div>
+        <div>
+            <button class="btn">Create</button>
+            <button class="btn cancel" type="button" @click="$emit('create')">Cancel</button>
+        </div>
     </form>
 </template>
+
+<style>
+    label {
+        display: block;
+        font-weight: bold;
+        margin-block: 0.5em;
+    }
+
+    .btn {
+        margin-block: 0.5em;
+    }
+
+    .cancel {
+        background-color: red !important;
+    }
+</style>
 
 <script>
     import { defineComponent } from 'vue';

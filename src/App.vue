@@ -1,10 +1,10 @@
 <template>
     <h1 style="text-align: center">Motion Picture Data Management Application</h1>
     <div v-if="adding">
-        <create-form @create="adding = null" />
+        <create-form @create="toggle('adding')" />
     </div>
-    <div v-if="!adding">
-        <div style="display: flex; justify-content:end"><button class="btn" @click="adding = true"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
+    <div v-if="listing">
+        <div style="display: flex; justify-content:end"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
         <movies-table />
     </div>
 </template>
@@ -14,17 +14,24 @@
     import CreateForm from './components/CreateForm.vue'
 
 export default {
-        name: 'App',
-        components: {
-            MoviesTable,
-            CreateForm
-        },
-        data() {
-            return {
-                loading: false,
-                adding: null
-            };
-        },
+    name: 'App',
+    components: {
+        MoviesTable,
+        CreateForm
+    },
+    data() {
+        return {
+            loading: false,
+            adding: false,
+            listing: true
+        };
+    },
+    methods: {
+        toggle(state) {
+            this[state] = !this[state];
+            this.listing = !this.listing;
+        }
+    }
 }
 </script>
 
