@@ -36,7 +36,6 @@
         width: 100%;
         border-collapse: collapse;
         border-block: 2px solid black;
-        margin-block-start: 1em;
     }
 
     th {

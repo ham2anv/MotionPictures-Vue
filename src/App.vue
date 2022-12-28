@@ -4,14 +4,14 @@
         <create-form @create="toggle('adding')" />
     </div>
     <div v-if="listing">
-        <div style="display: flex; justify-content:end"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
+        <div class="full-right"><button class="btn" @click="toggle('adding')"><font-awesome-icon icon="fa-solid fa-circle-plus" /> Add</button></div>
         <movies-table />
     </div>
 </template>
 
 <script>
-    import MoviesTable from './components/MoviesTable.vue'
-    import CreateForm from './components/CreateForm.vue'
+import MoviesTable from './components/MoviesTable.vue'
+import CreateForm from './components/CreateForm.vue'
 
 export default {
     name: 'App',
@@ -43,13 +43,18 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-    .btn {
-        background-color: #088cff;
-        color: white;
-        font-weight: bold;
-        padding-inline: 6px;
-        padding-block: 4px 5px;
-        border-radius: 5px;
-        border-color: transparent;
-    }
+.btn {
+    background-color: #088cff;
+    color: white;
+    font-weight: bold;
+    padding-inline: 6px;
+    padding-block: 4px 5px;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.full-right {
+    display: flex;
+    justify-content: end
+}
 </style>
